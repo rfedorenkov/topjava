@@ -9,12 +9,22 @@ public class MealTo {
 
     private final int calories; // калории
 
-    private final boolean excess; // избыток калорий
+    private boolean excess; // избыток калорий
 
     public MealTo(LocalDateTime dateTime, String description, int calories, boolean excess) {
         this.dateTime = dateTime;
         this.description = description;
         this.calories = calories;
+        this.excess = excess;
+    }
+
+//    for filteredByClosure
+//    public Boolean getExcess() {
+//        return excess.get();
+//    }
+
+    // for filteredBySetterRecursion
+    public void setExcess(boolean excess) {
         this.excess = excess;
     }
 
