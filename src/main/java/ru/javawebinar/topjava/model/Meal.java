@@ -2,14 +2,14 @@ package ru.javawebinar.topjava.model;
 
 import java.time.LocalDateTime;
 
-public class UserMeal {
+public class Meal {
     private final LocalDateTime dateTime; // время
 
     private final String description; // описание
 
     private final int calories; // калории
 
-    public UserMeal(LocalDateTime dateTime, String description, int calories) {
+    public Meal(LocalDateTime dateTime, String description, int calories) {
         this.dateTime = dateTime;
         this.description = description;
         this.calories = calories;
