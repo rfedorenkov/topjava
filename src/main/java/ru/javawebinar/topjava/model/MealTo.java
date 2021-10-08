@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class MealTo {
+    private final int id;
     private final LocalDateTime dateTime; // время
 
     private final String description; // описание
@@ -13,7 +14,8 @@ public class MealTo {
 
     private final boolean excess; // избыток калорий
 
-    public MealTo(LocalDateTime dateTime, String description, int calories, boolean excess) {
+    public MealTo(int id, LocalDateTime dateTime, String description, int calories, boolean excess) {
+        this.id = id;
         this.dateTime = dateTime;
         this.description = description;
         this.calories = calories;
@@ -42,6 +44,10 @@ public class MealTo {
 
     public LocalTime getTime() {
         return dateTime.toLocalTime();
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override
