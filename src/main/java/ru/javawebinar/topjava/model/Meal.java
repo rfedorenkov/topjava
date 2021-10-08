@@ -5,11 +5,11 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Meal {
-    private final LocalDateTime dateTime; // время
+    private LocalDateTime dateTime; // время
 
-    private final String description; // описание
+    private String description; // описание
 
-    private final int calories; // калории
+    private int calories; // калории
 
     public Meal(LocalDateTime dateTime, String description, int calories) {
         this.dateTime = dateTime;
@@ -17,12 +17,24 @@ public class Meal {
         this.calories = calories;
     }
 
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+
     public LocalDateTime getDateTime() {
         return dateTime;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setCalories(int calories) {
+        this.calories = calories;
     }
 
     public int getCalories() {
@@ -35,5 +47,14 @@ public class Meal {
 
     public LocalTime getTime() {
         return dateTime.toLocalTime();
+    }
+
+    @Override
+    public String toString() {
+        return "Meal{" +
+                "dateTime=" + dateTime +
+                ", description='" + description + '\'' +
+                ", calories=" + calories +
+                '}';
     }
 }
