@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.model.MealTo;
 import ru.javawebinar.topjava.util.MealsUtil;
+import ru.javawebinar.topjava.util.TimeUtil;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -30,11 +31,13 @@ public class MealServlet extends HttpServlet {
         action = action == null ? "" : action;
         switch (action) {
             case "add" :
+                log.debug("action add meal into meals");
                 Meal meal = new Meal(null, null, 0);
                 path = ADD;
                 request.setAttribute("meal", meal);
                 break;
             default:
+                log.debug("show list in meals");
                 List<MealTo> meals = MealsUtil.filteredByStreams(MealsUtil.meals, LocalTime.MIN, LocalTime.MAX, MealsUtil.CALORIES_PER_DAY);
                 request.setAttribute("meals", meals);
                 path = LIST;
@@ -45,10 +48,9 @@ public class MealServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        log.debug("do post in meals");
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
-        LocalDateTime dateTime = LocalDateTime.parse(request.getParameter("date"), formatter);
-
+        LocalDateTime dateTime = TimeUtil.parseDateTime(request.getParameter("date"));
         String description = request.getParameter("description");
         int calories = Integer.parseInt(request.getParameter("calories"));
 
