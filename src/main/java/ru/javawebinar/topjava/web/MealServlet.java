@@ -24,7 +24,7 @@ public class MealServlet extends HttpServlet {
     private static final String ADD_AND_UPDATE = "meal.jsp";
     private static final String LIST = "meals.jsp";
 
-    private Dao dao = new DaoImp();
+    private final Dao dao = new DaoImp();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,37 +35,42 @@ public class MealServlet extends HttpServlet {
         action = action == null ? "" : action;
         switch (action) {
             case "add" :
-                log.debug("action add meal into meals");
+                log.debug("Start Add new Meal");
                 Meal meal = new Meal(null, null, 0);
                 path = ADD_AND_UPDATE;
                 request.setAttribute("meal", meal);
+                log.debug("Finish Add new Meal");
                 break;
             case "update" :
-                log.debug("action update meal in meals");
+                log.debug("Start Update Meal");
                 int id = Integer.parseInt(request.getParameter("id"));
                 meal = dao.getById(id);
                 path = ADD_AND_UPDATE;
                 request.setAttribute("meal", meal);
+                log.debug("Finish Update Meal");
                 break;
             case "delete" :
-                log.debug("action delete meal from meals");
+                log.debug("Start Delete Meal");
                 id = Integer.parseInt(request.getParameter("id"));
                 dao.delete(id);
                 response.sendRedirect("meals");
+                log.debug("Finish Delete Meal");
                 return;
             default:
-                log.debug("show list in meals");
+                log.debug("Start Show Meals");
                 List<MealTo> meals = MealsUtil.filteredByStreams(dao.getAll(), LocalTime.MIN, LocalTime.MAX, MealsUtil.CALORIES_PER_DAY);
                 request.setAttribute("meals", meals);
                 path = LIST;
+                log.debug("Finish Show Meals");
         }
 
+        log.debug("forward from meals");
         request.getRequestDispatcher(path).forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        log.debug("do post in meals");
+        log.debug("Start Add or Update Meal");
 
         request.setCharacterEncoding("UTF-8");
 
@@ -78,5 +83,6 @@ public class MealServlet extends HttpServlet {
         dao.add(meal);
 
         response.sendRedirect("meals");
+        log.debug("Finish Add or Update Meal");
     }
 }
