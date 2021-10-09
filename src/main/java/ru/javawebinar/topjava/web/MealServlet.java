@@ -33,7 +33,7 @@ public class MealServlet extends HttpServlet {
         String action = request.getParameter("action");
         String forward;
         action = action == null ? "" : action;
-        switch (action) {
+        switch (action.toLowerCase()) {
             case "add" :
                 log.debug("Start Add new Meal");
                 Meal meal = new Meal(null, null, 0);
