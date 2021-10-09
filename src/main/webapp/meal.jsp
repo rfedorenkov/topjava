@@ -10,7 +10,7 @@
 <h2>Edit Meal</h2>
 <jsp:useBean id="meal" scope="request" type="ru.javawebinar.topjava.model.Meal"/>
 <form method="post" action="meals">
-  <input type="hidden" name="id" value="${meal.id}"/>
+  <input type="hidden" name="mealId" value="${meal.id}"/>
   <label>Date time:</label>
   <input type="datetime-local" name="date" value="${meal.dateTime}" required><br>
   <label>Description:</label>

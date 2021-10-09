@@ -11,44 +11,44 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class DaoImp implements Dao {
-    private final Map<Integer, Meal> meals = new ConcurrentHashMap<>();
+    private final Map<Integer, Meal> mealMap = new ConcurrentHashMap<>();
     private final AtomicInteger atomicInteger = new AtomicInteger();
 
     public DaoImp() {
-        init();
+        initLocalDb();
     }
 
-    public void init() {
-        add(new Meal(LocalDateTime.of(2020, Month.JANUARY, 30, 10, 0), "Завтрак", 500));
-        add(new Meal(LocalDateTime.of(2020, Month.JANUARY, 30, 13, 0), "Обед", 1000));
-        add(new Meal(LocalDateTime.of(2020, Month.JANUARY, 30, 20, 0), "Ужин", 500));
-        add(new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 0, 0), "Еда на граничное значение", 100));
-        add(new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 10, 0), "Завтрак", 1000));
-        add(new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 13, 0), "Обед", 500));
-        add(new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 20, 0), "Ужин", 410));
+    public void initLocalDb() {
+        addMeal(new Meal(LocalDateTime.of(2020, Month.JANUARY, 30, 10, 0), "Завтрак", 500));
+        addMeal(new Meal(LocalDateTime.of(2020, Month.JANUARY, 30, 13, 0), "Обед", 1000));
+        addMeal(new Meal(LocalDateTime.of(2020, Month.JANUARY, 30, 20, 0), "Ужин", 500));
+        addMeal(new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 0, 0), "Еда на граничное значение", 100));
+        addMeal(new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 10, 0), "Завтрак", 1000));
+        addMeal(new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 13, 0), "Обед", 500));
+        addMeal(new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 20, 0), "Ужин", 410));
     }
 
     @Override
-    public void add(Meal meal) {
+    public void addMeal(Meal meal) {
         if (meal.isNew()) {
             meal.setId(atomicInteger.incrementAndGet());
-            meals.put(meal.getId(), meal);
+            mealMap.put(meal.getId(), meal);
         }
-        meals.replace(meal.getId(), meal);
+        mealMap.replace(meal.getId(), meal);
     }
 
     @Override
-    public void delete(int id) {
-        meals.remove(id);
+    public void deleteMeal(int mealId) {
+        mealMap.remove(mealId);
     }
 
     @Override
-    public List<Meal> getAll() {
-        return new ArrayList<>(meals.values());
+    public List<Meal> getAllMeals() {
+        return new ArrayList<>(mealMap.values());
     }
 
     @Override
-    public Meal getById(int id) {
-        return meals.get(id);
+    public Meal getMealById(int mealId) {
+        return mealMap.get(mealId);
     }
 }
