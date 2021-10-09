@@ -18,6 +18,7 @@
   <label>Calories:</label>
   <input type="number" name="calories" value="${meal.calories}" required><br>
   <input type="submit" name="save" value="Save"/>
+  <input onclick="window.history.back()" type="button" value="Cancel"/>
 </form>
 </body>
 </html>
