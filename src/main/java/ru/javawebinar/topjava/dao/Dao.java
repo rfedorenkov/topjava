@@ -4,13 +4,13 @@ import ru.javawebinar.topjava.model.Meal;
 
 import java.util.List;
 
-public interface Dao {
+public interface Dao<T> {
 
-    void addMeal(Meal meal);
+    void addMeal(T item);
 
-    void deleteMeal(int mealId);
+    void deleteMeal(int itemId);
 
-    List<Meal> getAllMeals();
+    List<T> getAllMeals();
 
-    Meal getMealById(int mealId);
+    T getMealById(int itemId);
 }

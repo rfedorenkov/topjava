@@ -24,7 +24,7 @@ public class MealServlet extends HttpServlet {
     private static final String ADD_OR_UPDATE = "meal.jsp";
     private static final String LIST_MEALS = "meals.jsp";
 
-    private final Dao dao = new DaoImp();
+    private final Dao<Meal> dao = new DaoImp();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
