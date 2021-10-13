@@ -2,7 +2,7 @@ package ru.javawebinar.topjava.web;
 
 import org.slf4j.Logger;
 import ru.javawebinar.topjava.dao.Dao;
-import ru.javawebinar.topjava.dao.DaoImp;
+import ru.javawebinar.topjava.dao.DaoMealImp;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.model.MealTo;
 import ru.javawebinar.topjava.util.MealsUtil;
@@ -24,7 +24,7 @@ public class MealServlet extends HttpServlet {
     private static final String ADD_OR_UPDATE = "meal.jsp";
     private static final String LIST_MEALS = "meals.jsp";
 
-    private final Dao<Meal> dao = new DaoImp();
+    private final Dao<Meal> dao = new DaoMealImp();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
