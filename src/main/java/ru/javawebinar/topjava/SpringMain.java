@@ -18,3 +18,5 @@ public class SpringMain {
         }
     }
 }
+
+//TODO 5: включить классы еды в контекст Spring (добавить аннотации) и вызвать из SpringMain любой метод MealRestController (проверить что Spring все корректно заинжектил)

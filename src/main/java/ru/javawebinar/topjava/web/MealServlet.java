@@ -75,3 +75,7 @@ public class MealServlet extends HttpServlet {
         return Integer.parseInt(paramId);
     }
 }
+//TODO 6: в MealServlet сделать инициализацию Spring, достать MealRestController из контекста и работать
+// с едой через него (как в SpringMain). pom.xml НЕ менять, работаем со spring-context.
+// Сервлет обращается к контролеру, контроллер вызывает сервис, сервис - репозиторий.
+// Когда будем работать через Spring MVC, MealServlet удалим, останется только контроллер.
