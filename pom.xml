@@ -1,3 +1,37 @@
+<!DOCTYPE project [
+        <!ELEMENT project (modelVersion|groupId|artifactId|packaging|version|name|url|properties|build|dependencies|profiles|dependencyManagement)*>
+        <!ATTLIST project
+                xmlns CDATA #REQUIRED
+                xmlns:xsi CDATA #REQUIRED
+                xsi:schemaLocation CDATA #REQUIRED>
+        <!ELEMENT modelVersion (#PCDATA)>
+        <!ELEMENT groupId (#PCDATA)>
+        <!ELEMENT artifactId (#PCDATA)>
+        <!ELEMENT packaging (#PCDATA)>
+        <!ELEMENT version (#PCDATA)>
+        <!ELEMENT name (#PCDATA)>
+        <!ELEMENT url (#PCDATA)>
+        <!ELEMENT properties (java.version|project.build.sourceEncoding|project.reporting.outputEncoding|spring.version|logback.version|slf4j.version)*>
+        <!ELEMENT java.version (#PCDATA)>
+        <!ELEMENT project.build.sourceEncoding (#PCDATA)>
+        <!ELEMENT project.reporting.outputEncoding (#PCDATA)>
+        <!ELEMENT spring.version (#PCDATA)>
+        <!ELEMENT logback.version (#PCDATA)>
+        <!ELEMENT slf4j.version (#PCDATA)>
+        <!ELEMENT build (finalName|defaultGoal|plugins)*>
+        <!ELEMENT finalName (#PCDATA)>
+        <!ELEMENT defaultGoal (#PCDATA)>
+        <!ELEMENT plugins (plugin)*>
+        <!ELEMENT plugin (groupId|artifactId|version|configuration)*>
+        <!ELEMENT configuration (source|target)*>
+        <!ELEMENT source (#PCDATA)>
+        <!ELEMENT target (#PCDATA)>
+        <!ELEMENT dependencies (dependency)*>
+        <!ELEMENT dependency (groupId|artifactId|version|scope)*>
+        <!ELEMENT scope (#PCDATA)>
+        <!ELEMENT profiles (#PCDATA)>
+        <!ELEMENT dependencyManagement (#PCDATA)>
+        ]>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
