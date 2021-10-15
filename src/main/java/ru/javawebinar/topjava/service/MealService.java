@@ -4,8 +4,10 @@ import org.springframework.stereotype.Service;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.repository.MealRepository;
 
-import java.util.Collection;
+import java.time.LocalDateTime;
 import java.util.List;
+
+import static ru.javawebinar.topjava.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
 public class MealService {
@@ -16,35 +18,27 @@ public class MealService {
         this.repository = repository;
     }
 
-    public Meal create(Meal meal) {
-        return repository.save(meal);
+    public Meal create(Meal meal, int userId) {
+        return repository.save(meal, userId);
     }
 
-    public void delete(int id) {
-        repository.delete(id);
-        //todo checkNotFoundWithId(repository.delete(id), id);
+    public void delete(int id, int userId) {
+        checkNotFoundWithId(repository.delete(id, userId), id);
     }
 
-    public Meal get(int id) {
-        return repository.get(id);
-        //todo checkNotFoundWithId(repository.get(id), id);
+    public Meal get(int id, int userId) {
+        return checkNotFoundWithId(repository.get(id, userId), id);
     }
 
-    public Collection<Meal> getAll() {
-        return repository.getAll();
+    public List<Meal> getAll(int userId) {
+        return repository.getAll(userId);
     }
 
-    public void update(Meal meal) {
-        repository.save(meal);
-        //todo checkNotFoundWithId(repository.save(user), user.getId());
+    public void update(Meal meal, int userId) {
+        checkNotFoundWithId(repository.save(meal, userId), meal.getId());
     }
 
-
-    //// MealService можно тестировать без подмены логики авторизации,
-    // поэтому в методы сервиса и репозитория
-    //// мы передаем параметр userId: id авторизованного пользователя (предполагаемого владельца еды).
-    //// 4.3: если еда не принадлежит авторизированному пользователю или отсутствует, в MealService бросать NotFoundException.
-    //// 4.4: конвертацию в MealTo можно делать как в слое web, так и в service (Mapping Entity->DTO: Controller or Service?)
-    //// 4.5: в MealService постараться сделать в каждом методе только одни запрос к MealRepository
-    //// 4.6 еще раз: не надо в названиях методов повторять названия класса (Meal).
+    public List<Meal> getFiltered(int userId, LocalDateTime start, LocalDateTime end) {
+        return repository.getFiltered(userId, start, end);
+    }
 }
