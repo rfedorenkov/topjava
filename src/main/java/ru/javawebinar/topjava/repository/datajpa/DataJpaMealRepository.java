@@ -18,11 +18,15 @@ public class DataJpaMealRepository implements MealRepository {
 
     @Override
     public Meal save(Meal meal, int userId) {
+        if (meal.getUser().getId() == userId) {
+            return crudRepository.save(meal);
+        }
         return null;
     }
 
     @Override
     public boolean delete(int id, int userId) {
+        
         return false;
     }
 
